@@ -11,6 +11,8 @@ import { getFaceLocations } from '../../utils';
 import ImageAnalytics from './components/ImageAnalytics';
 import UploadImage from './components/UploadImage';
 
+const BASE_URL = process.env.REACT_APP_BASE_URL || 'http://localhost:5000';
+
 const styles = (theme) => ({
   root: {
     marginTop: '10vh',
@@ -133,7 +135,7 @@ class FacialRecognition extends Component {
 
           {faces && !isUploading && (
             <ImageAnalytics
-              image={`/api/image/${imgId}`}
+              image={`${BASE_URL}/api/image/${imgId}`}
               data={faces}
               callback={this.imageAnalyticsCallBack}
             />

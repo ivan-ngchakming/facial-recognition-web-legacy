@@ -2,6 +2,8 @@ import { useState, useEffect, useCallback } from 'react';
 import { graphqlQuery } from '../graphql';
 import { PHOTOS as PHOTOS_GQL_Q } from '../graphql/query';
 
+const BASE_URL = process.env.REACT_APP_BASE_URL || 'http://localhost:5000';
+
 export default function useImages(
   defaultPage,
   defaultPhotosPerPage,
@@ -27,7 +29,7 @@ export default function useImages(
         setImages(
           data.photos.map((photo) => ({
             id: photo.id,
-            source: `/api/image/${photo.id}`,
+            source: `${BASE_URL}/api/image/${photo.id}`,
           }))
         );
         setImgCount(data.count);
