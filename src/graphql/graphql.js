@@ -1,6 +1,8 @@
 import axios from 'axios';
 
-export async function graphqlQuery(query, variables = {}, apiUrl = '/graphql') {
+const BASE_URL = process.env.REACT_APP_BASE_URL || 'http://localhost:8000';
+
+export async function graphqlQuery(query, variables = {}, apiUrl = `${BASE_URL}/graphql`) {
   var response = await axios.post(
     apiUrl,
     {
