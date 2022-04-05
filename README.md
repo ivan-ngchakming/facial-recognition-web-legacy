@@ -68,3 +68,15 @@ Identify known faces in the database from a live video
 ## Contributing
 
 For guidance on setting up a development environment and how to make a contribution to FRDMS, see the [contributing guidelines](./CONTRIBUTING.md).
+
+### Setup
+
+Create a copy of `.env.example`, rename to `.env` and fill in corresponding values
+
+```bash
+REACT_APP_BASE_URL=http://localhost:8000
+```
+
+```bash
+yarn && yarn start
+```
