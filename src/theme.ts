@@ -1,4 +1,4 @@
-import { createTheme, adaptV4Theme } from '@mui/material/styles';
+import { createTheme } from '@mui/material/styles';
 
 const colorScheme = {
   'True Blue': '#0466c8',
@@ -13,7 +13,7 @@ const colorScheme = {
   Manatee: '#979dac',
 };
 
-export const theme = createTheme(adaptV4Theme({
+export const theme = createTheme({
   typography: {
     fontFamily: [
       '-apple-system',
@@ -40,4 +40,4 @@ export const theme = createTheme(adaptV4Theme({
       main: colorScheme['USAFA Blue'], // #0353a4
     },
   },
-}));
+});

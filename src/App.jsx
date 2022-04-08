@@ -2,14 +2,16 @@ import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider, StyledEngineProvider } from '@mui/material/styles';
 import { theme } from './theme';
-import Home from './pages/Home';
-import NavBar from './components/nav/NavBar';
-import FacialRecognition from './pages/FacialRecognition';
-import Images from './pages/Images';
-import BatchRecTasks from './pages/tasks/Tasks';
-import Profiles from './pages/profiles/Profiles';
-import ProfileDetails from './pages/ProfileDetails';
-import Create from './pages/tasks/Create';
+
+import NavBar from './legacy/components/nav/NavBar';
+import Home from './legacy/pages/Home';
+import FacialRecognition from './legacy/pages/FacialRecognition';
+import Images from './legacy/pages/Images';
+import BatchRecTasks from './legacy/pages/tasks/Tasks';
+import Profiles from './legacy/pages/profiles/Profiles';
+import ProfileDetails from './legacy/pages/ProfileDetails';
+import Create from './legacy/pages/tasks/Create';
+
 import Login from './pages/Login';
 
 function App() {
