@@ -1,7 +1,7 @@
-import { Box, Typography } from '@material-ui/core';
+import { Box, Typography } from '@mui/material';
 import LinearProgress, {
   LinearProgressProps,
-} from '@material-ui/core/LinearProgress';
+} from '@mui/material/LinearProgress';
 
 type LinearProgressWithLabelProps = {
   value: number;

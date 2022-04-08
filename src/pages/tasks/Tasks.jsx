@@ -1,8 +1,8 @@
 import { useState, useCallback } from 'react';
-import { Tooltip, IconButton } from '@material-ui/core';
-import DeleteIcon from '@material-ui/icons/Delete';
-import AddIcon from '@material-ui/icons/Add';
-import RefreshIcon from '@material-ui/icons/Refresh';
+import { Tooltip, IconButton } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
+import AddIcon from '@mui/icons-material/Add';
+import RefreshIcon from '@mui/icons-material/Refresh';
 
 import useTasks from '../../hooks/useTasks';
 import DataTable from '../../components/DataTable/DataTable';
@@ -25,12 +25,12 @@ export default function Tasks() {
 
   const toolBarButtons = [
     <Tooltip title="Refresh">
-      <IconButton aria-label="refresh" onClick={fetchTasks}>
+      <IconButton aria-label="refresh" onClick={fetchTasks} size="large">
         <RefreshIcon />
       </IconButton>
     </Tooltip>,
     <Tooltip title="Add">
-      <IconButton aria-label="add" component="button" href="/tasks/create">
+      <IconButton aria-label="add" component="button" href="/tasks/create" size="large">
         <AddIcon />
       </IconButton>
     </Tooltip>,
@@ -38,7 +38,7 @@ export default function Tasks() {
 
   const toolBarSelectedButtons = [
     <Tooltip title="Delete">
-      <IconButton aria-label="delete">
+      <IconButton aria-label="delete" size="large">
         <DeleteIcon />
       </IconButton>
     </Tooltip>,

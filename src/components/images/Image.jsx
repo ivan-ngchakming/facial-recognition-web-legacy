@@ -5,41 +5,62 @@ import React, {
   useCallback,
   useContext,
 } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { Avatar, Card, CardActionArea, Checkbox } from '@material-ui/core';
+import { styled } from '@mui/material/styles';
+import { Avatar, Card, CardActionArea, Checkbox } from '@mui/material';
 import { useHistory } from 'react-router-dom';
 import { getCornerBrightness } from '../../utils';
 import clsx from 'clsx';
 import { ContextMenuContext } from '../context/MenuContext';
 
-const BRIGHTNESS_THRESHOLD = 100;
+const PREFIX = 'Image';
 
-const useStyles = makeStyles((theme) => ({
-  card: {
+const classes = {
+  card: `${PREFIX}-card`,
+  img: `${PREFIX}-img`,
+  optionWrapper: `${PREFIX}-optionWrapper`,
+  option: `${PREFIX}-option`,
+  checkbox: `${PREFIX}-checkbox`,
+  checkboxWhite: `${PREFIX}-checkboxWhite`
+};
+
+// TODO jss-to-styled codemod: The Fragment root was replaced by div. Change the tag if needed.
+const Root = styled('div')((
+  {
+    theme
+  }
+) => ({
+  [`& .${classes.card}`]: {
     position: 'relative',
   },
-  img: {
+
+  [`& .${classes.img}`]: {
     display: 'block',
     objectFit: 'cover',
     transition: '.5s ease',
   },
-  optionWrapper: {
+
+  [`& .${classes.optionWrapper}`]: {
     opacity: 0,
     top: '4%',
     left: '82%',
     position: 'absolute',
     transition: '.5s ease',
   },
-  option: {
+
+  [`& .${classes.option}`]: {
     padding: '16px 32px',
   },
-  checkbox: {
+
+  [`& .${classes.checkbox}`]: {
     boxShadow: '0 2px 2px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.16)',
   },
-  checkboxWhite: {
+
+  [`& .${classes.checkboxWhite}`]: {
     color: theme.palette.primary.main,
-  },
+  }
 }));
+
+const BRIGHTNESS_THRESHOLD = 100;
 
 export default function Image({
   image,
@@ -52,7 +73,7 @@ export default function Image({
   selectMode = false,
   imgHash,
 }) {
-  const classes = useStyles();
+
   const history = useHistory();
   const canvasRef = useRef(null);
   const [imageOpacity, setImageOpacity] = useState(1);
@@ -148,7 +169,7 @@ export default function Image({
   }, [image, loadImage, selectMode, optionsOpacity]);
 
   return (
-    <>
+    (<Root>
       <Card
         className={classes.card}
         onMouseOver={showOptions}
@@ -196,6 +217,6 @@ export default function Image({
           <Avatar variant="square" style={{ height: height, width: height }} />
         )}
       </Card>
-    </>
+    </Root>)
   );
 }

@@ -4,8 +4,8 @@ import {
   ListItemAvatar,
   ListItemText,
   Typography,
-} from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+} from '@mui/material';
+import { styled } from '@mui/material/styles';
 import React, { useEffect, useState } from 'react';
 import { graphqlQuery } from '../../../../graphql';
 import { PROFILE as PROFILE_GQL_Q } from '../../../../graphql/query';
@@ -13,22 +13,39 @@ import { roundOff } from '../../../../utils';
 import CroppedImage from '../../../../components/images/CroppedImage';
 import LinearBarsProgress from '../../../../components/progress/LinearBarsProgress';
 
-const BASE_URL = process.env.REACT_APP_BASE_URL || 'http://localhost:5000';
+const PREFIX = 'ProfileCard';
 
-const useStyles = makeStyles((theme) => ({
-  faceCard: {
+const classes = {
+  faceCard: `${PREFIX}-faceCard`,
+  inline: `${PREFIX}-inline`,
+  tagWrapper: `${PREFIX}-tagWrapper`,
+  tag: `${PREFIX}-tag`
+};
+
+// TODO jss-to-styled codemod: The Fragment root was replaced by div. Change the tag if needed.
+const Root = styled('div')((
+  {
+    theme
+  }
+) => ({
+  [`& .${classes.faceCard}`]: {
     alignItems: 'flex-start',
   },
-  inline: {
+
+  [`& .${classes.inline}`]: {
     display: 'inline',
   },
-  tagWrapper: {
+
+  [`& .${classes.tagWrapper}`]: {
     marginTop: theme.spacing(1),
   },
-  tag: {
+
+  [`& .${classes.tag}`]: {
     marginRight: theme.spacing(1),
-  },
+  }
 }));
+
+const BASE_URL = process.env.REACT_APP_BASE_URL || 'http://localhost:5000';
 
 export default function ProfileCard({
   profileId,
@@ -37,7 +54,7 @@ export default function ProfileCard({
   selected,
   onClick,
 }) {
-  const classes = useStyles();
+
   const [profile, setProfile] = useState({});
 
   const fetchProfile = (profileId) => {
@@ -55,7 +72,7 @@ export default function ProfileCard({
   });
 
   return (
-    <React.Fragment>
+    <Root>
       <ListItem
         key={`selected-face-${index}`}
         button
@@ -107,6 +124,6 @@ export default function ProfileCard({
           </React.Fragment>
         )}
       </ListItem>
-    </React.Fragment>
+    </Root>
   );
 }

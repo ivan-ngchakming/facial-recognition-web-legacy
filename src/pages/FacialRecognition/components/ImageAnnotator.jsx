@@ -1,31 +1,48 @@
 import React, { useCallback, useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
 import { useResizeDetector } from 'react-resize-detector';
 
-const useStyles = makeStyles((theme) => ({
-  container: {
+const PREFIX = 'ImageAnnotator';
+
+const classes = {
+  container: `${PREFIX}-container`,
+  box: `${PREFIX}-box`,
+  image: `${PREFIX}-image`,
+  rect: `${PREFIX}-rect`
+};
+
+// TODO jss-to-styled codemod: The Fragment root was replaced by div. Change the tag if needed.
+const Root = styled('div')((
+  {
+    theme
+  }
+) => ({
+  [`& .${classes.container}`]: {
     flex: 1,
     justifyContent: 'center',
     position: 'relative',
     height: '100%',
   },
-  box: {
+
+  [`& .${classes.box}`]: {
     position: 'absolute,',
   },
-  image: {
+
+  [`& .${classes.image}`]: {
     alignSelf: 'center',
     maxWidth: '100%',
     borderRadius: '1%',
   },
-  rect: {
+
+  [`& .${classes.rect}`]: {
     border: `1px solid ${theme.palette.warning.light}`,
     position: 'absolute',
     zIndex: 99,
-  },
+  }
 }));
 
 export default function ImageAnnotator({ src, faceLocations }) {
-  const classes = useStyles();
+
   const [imgWidth, setImgWidth] = useState(0);
   const [imgHeight, setImgHeight] = useState(0);
 
@@ -69,7 +86,7 @@ export default function ImageAnnotator({ src, faceLocations }) {
   };
 
   return (
-    <React.Fragment>
+    <Root>
       <div className={classes.container}>
         {/* <ResizeObserver
           onResize={(rect) => this.handleImageLoaded(rect)}
@@ -82,6 +99,6 @@ export default function ImageAnnotator({ src, faceLocations }) {
         />
         {faceLocations.map((data, index) => drawReac(...data, index))}
       </div>
-    </React.Fragment>
+    </Root>
   );
 }

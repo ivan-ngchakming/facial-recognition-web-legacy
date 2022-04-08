@@ -1,35 +1,60 @@
 import React, { useCallback, useState } from 'react';
-import { Button, IconButton, Paper, TextField } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
+import { Button, IconButton, Paper, TextField } from '@mui/material';
 import { useDropzone } from 'react-dropzone';
-import ClearIcon from '@material-ui/icons/Clear';
+import ClearIcon from '@mui/icons-material/Clear';
 
-const useStyles = makeStyles((theme) => ({
-  root: {},
-  inputBox: {
+const PREFIX = 'UploadImage';
+
+const classes = {
+  root: `${PREFIX}-root`,
+  inputBox: `${PREFIX}-inputBox`,
+  input: `${PREFIX}-input`,
+  btn: `${PREFIX}-btn`,
+  imgPreviewWrapper: `${PREFIX}-imgPreviewWrapper`,
+  imgPreviewDiv: `${PREFIX}-imgPreviewDiv`,
+  imgPreview: `${PREFIX}-imgPreview`,
+  closeImgBtn: `${PREFIX}-closeImgBtn`,
+  fileBrowser: `${PREFIX}-fileBrowser`
+};
+
+const Root = styled('div')((
+  {
+    theme
+  }
+) => ({
+  [`&.${classes.root}`]: {},
+
+  [`& .${classes.inputBox}`]: {
     display: 'flex',
   },
-  input: {
+
+  [`& .${classes.input}`]: {
     marginRight: theme.spacing(2),
   },
-  btn: {
+
+  [`& .${classes.btn}`]: {
     margin: theme.spacing(2, 1, 2, 1),
     minWidth: '100px',
   },
-  imgPreviewWrapper: {
+
+  [`& .${classes.imgPreviewWrapper}`]: {
     display: 'flex',
     justifyContent: 'center',
     marginTop: '5%',
   },
-  imgPreviewDiv: {
+
+  [`& .${classes.imgPreviewDiv}`]: {
     display: 'inline-block',
     position: 'relative',
   },
-  imgPreview: {
+
+  [`& .${classes.imgPreview}`]: {
     maxHeight: '50vh',
     borderRadius: '1%',
   },
-  closeImgBtn: {
+
+  [`& .${classes.closeImgBtn}`]: {
     position: 'absolute',
     top: '-3%',
     right: '-5%',
@@ -39,7 +64,8 @@ const useStyles = makeStyles((theme) => ({
       color: '#f00',
     },
   },
-  fileBrowser: {
+
+  [`& .${classes.fileBrowser}`]: {
     borderStyle: 'dashed',
     borderWidth: '2px',
     borderRadius: '2px',
@@ -53,11 +79,11 @@ const useStyles = makeStyles((theme) => ({
     '&:hover': {
       cursor: 'pointer',
     },
-  },
+  }
 }));
 
 export default function UploadImage({ uploadImage }) {
-  const classes = useStyles();
+
   const [imgFile, setImgFile] = useState(null);
   const [image, setImage] = useState(null);
 
@@ -84,13 +110,14 @@ export default function UploadImage({ uploadImage }) {
   };
 
   return (
-    <div className={classes.root}>
+    <Root className={classes.root}>
       <div className={classes.inputBox}>
         <TextField
           id="standard-full-width"
           placeholder="Enter Image file's full local path or URL"
           fullWidth
           margin="normal"
+          variant='standard'
           className={classes.input}
         />
 
@@ -145,6 +172,6 @@ export default function UploadImage({ uploadImage }) {
           <p>Or UPLOAD files by dropping the files here</p>
         </Paper>
       )}
-    </div>
+    </Root>
   );
 }

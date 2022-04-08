@@ -3,8 +3,8 @@ import {
   ListItemAvatar,
   ListItemText,
   Typography,
-} from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+} from '@mui/material';
+import { styled } from '@mui/material/styles';
 import React, { useEffect, useState } from 'react';
 import { graphqlQuery } from '../../../../graphql';
 import {
@@ -13,29 +13,47 @@ import {
 } from '../../../../graphql/query';
 import { roundOff } from '../../../../utils/general';
 import CroppedImage from '../../../../components/images/CroppedImage';
-import LinearProgress from '@material-ui/core/LinearProgress';
+import LinearProgress from '@mui/material/LinearProgress';
 import LinearBarsProgress from '../../../../components/progress/LinearBarsProgress';
 
-const useStyles = makeStyles((theme) => ({
-  faceCard: {
+const PREFIX = 'FaceCard';
+
+const classes = {
+  faceCard: `${PREFIX}-faceCard`,
+  inline: `${PREFIX}-inline`,
+  tagWrapper: `${PREFIX}-tagWrapper`,
+  tag: `${PREFIX}-tag`,
+  loadingBar: `${PREFIX}-loadingBar`
+};
+
+const Root = styled('div')((
+  {
+    theme
+  }
+) => ({
+  [`& .${classes.faceCard}`]: {
     alignItems: 'flex-start',
   },
-  inline: {
+
+  [`& .${classes.inline}`]: {
     display: 'inline',
   },
-  tagWrapper: {
+
+  [`& .${classes.tagWrapper}`]: {
     marginTop: theme.spacing(1),
   },
-  tag: {
+
+  [`& .${classes.tag}`]: {
     marginRight: theme.spacing(1),
   },
-  loadingBar: {
+
+  [`& .${classes.loadingBar}`]: {
     marginTop: theme.spacing(2),
-  },
+  }
 }));
 
 export default function FaceCard({ index, img, face, selected, onClick }) {
-  const classes = useStyles();
+
   const [profile, setProfile] = useState(null);
   const [status, setStatus] = useState(false);
   const [matchResults, setMatchResults] = useState(null);
@@ -82,7 +100,7 @@ export default function FaceCard({ index, img, face, selected, onClick }) {
   }, [matchResults, profile]);
 
   return (
-    <div>
+    <Root>
       <ListItem
         // key={`face-${index}`}
         button
@@ -178,6 +196,6 @@ export default function FaceCard({ index, img, face, selected, onClick }) {
           />
         )}
       </ListItem>
-    </div>
+    </Root>
   );
 }

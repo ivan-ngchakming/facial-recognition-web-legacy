@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
-import { Paper, Grid, Card, Typography } from '@material-ui/core';
+import { Paper, Grid, Card, Typography } from '@mui/material';
 import { useLocation } from 'react-router-dom';
 import { graphqlQuery } from '../graphql';
 import { PROFILE as PROFILE_GQL_Q } from '../graphql/query';

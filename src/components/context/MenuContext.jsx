@@ -1,5 +1,5 @@
 import { createContext, useState } from 'react';
-import { Menu, MenuItem } from '@material-ui/core';
+import { Menu, MenuItem } from '@mui/material';
 
 //context-menu context
 export const ContextMenuContext = createContext({ openPopOver: () => {} });

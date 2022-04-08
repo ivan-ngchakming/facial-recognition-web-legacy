@@ -7,7 +7,7 @@ import {
   TableContainer,
   TablePagination,
   TableRow,
-} from '@material-ui/core';
+} from '@mui/material';
 import EnhancedTableHead from './EnhancedTableHead';
 import SelectToolBar from '../SelectToolbar';
 

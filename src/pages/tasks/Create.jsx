@@ -6,7 +6,7 @@ import {
   Box,
   Button,
   Grid,
-} from '@material-ui/core';
+} from '@mui/material';
 import { useHistory } from 'react-router-dom';
 import { graphqlQuery } from '../../graphql';
 import { BATCH_FACE_REC } from '../../graphql';

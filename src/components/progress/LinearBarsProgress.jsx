@@ -1,20 +1,31 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
+const PREFIX = 'LinearBarsProgress';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
+const classes = {
+  root: `${PREFIX}-root`,
+  bar: `${PREFIX}-bar`
+};
+
+const Root = styled('div')((
+  {
+    theme
+  }
+) => ({
+  [`&.${classes.root}`]: {
     display: 'flex',
     marginTop: theme.spacing(1),
   },
-  bar: {
+
+  [`& .${classes.bar}`]: {
     width: '5px',
     marginRight: '2px',
     alignSelf: 'center',
-  },
+  }
 }));
 
 export default function LinearBarsProgress({ value }) {
-  const classes = useStyles();
+
 
   const getBars = () => {
     const color = '#4caf50';
@@ -46,5 +57,5 @@ export default function LinearBarsProgress({ value }) {
     return bars;
   };
 
-  return <div className={classes.root}>{getBars()}</div>;
+  return <Root className={classes.root}>{getBars()}</Root>;
 }

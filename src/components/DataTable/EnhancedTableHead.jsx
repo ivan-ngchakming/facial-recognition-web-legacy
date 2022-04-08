@@ -1,26 +1,43 @@
 import React from 'react';
+import { styled } from '@mui/material/styles';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
 import {
   Checkbox,
   TableCell,
   TableHead,
   TableRow,
   TableSortLabel,
-} from '@material-ui/core';
+} from '@mui/material';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
+const PREFIX = 'EnhancedTableHead';
+
+const classes = {
+  root: `${PREFIX}-root`,
+  paper: `${PREFIX}-paper`,
+  table: `${PREFIX}-table`,
+  visuallyHidden: `${PREFIX}-visuallyHidden`,
+  absolute: `${PREFIX}-absolute`
+};
+
+const StyledTableHead = styled(TableHead)((
+  {
+    theme
+  }
+) => ({
+  [`& .${classes.root}`]: {
     width: '100%',
   },
-  paper: {
+
+  [`& .${classes.paper}`]: {
     width: '100%',
     marginBottom: theme.spacing(2),
   },
-  table: {
+
+  [`& .${classes.table}`]: {
     minWidth: 750,
   },
-  visuallyHidden: {
+
+  [`& .${classes.visuallyHidden}`]: {
     border: 0,
     clip: 'rect(0 0 0 0)',
     height: 1,
@@ -31,15 +48,16 @@ const useStyles = makeStyles((theme) => ({
     top: 20,
     width: 1,
   },
-  absolute: {
+
+  [`& .${classes.absolute}`]: {
     position: 'fixed',
     bottom: theme.spacing(2),
     right: theme.spacing(3),
-  },
+  }
 }));
 
 function EnhancedTableHead(props) {
-  const classes = useStyles();
+
   const {
     onSelectAllClick,
     order,
@@ -55,7 +73,7 @@ function EnhancedTableHead(props) {
   };
 
   return (
-    <TableHead>
+    <StyledTableHead>
       <TableRow>
         <TableCell padding="checkbox">
           <Checkbox
@@ -88,7 +106,7 @@ function EnhancedTableHead(props) {
         ))}
         {endPadding && <TableCell />}
       </TableRow>
-    </TableHead>
+    </StyledTableHead>
   );
 }
 

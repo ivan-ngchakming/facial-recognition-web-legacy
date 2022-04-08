@@ -1,31 +1,45 @@
 import React from 'react';
-import { Button, Grid, TextField, Typography } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
+import { Button, Grid, TextField, Typography } from '@mui/material';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { graphqlQuery } from '../../../../graphql';
 import { PROFILE as PROFILE_GQL_M } from '../../../../graphql/mutation';
 
-const useStyles = makeStyles((theme) => ({
-  formWrapper: {
+const PREFIX = 'CreatePortfolio';
+
+const classes = {
+  formWrapper: `${PREFIX}-formWrapper`,
+  btnWrapper: `${PREFIX}-btnWrapper`,
+  btn: `${PREFIX}-btn`
+};
+
+const Root = styled('div')((
+  {
+    theme
+  }
+) => ({
+  [`& .${classes.formWrapper}`]: {
     margin: theme.spacing(2),
   },
-  btnWrapper: {
+
+  [`& .${classes.btnWrapper}`]: {
     marginTop: theme.spacing(1),
     display: 'flex',
     justifyContent: 'center',
   },
-  btn: {
+
+  [`& .${classes.btn}`]: {
     minWidth: '120px',
     margin: theme.spacing(0, 1),
-  },
+  }
 }));
 
 export default function CreatePortfolio({ callback, faceId }) {
-  const classes = useStyles();
+
 
   return (
-    <div>
+    <Root>
       <Typography variant="h6" align="center">
         Create New Portfolio
       </Typography>
@@ -95,6 +109,6 @@ export default function CreatePortfolio({ callback, faceId }) {
           </form>
         )}
       </Formik>
-    </div>
+    </Root>
   );
 }

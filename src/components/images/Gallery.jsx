@@ -6,10 +6,10 @@ import {
   Box,
   TablePagination,
   Tooltip,
-} from '@material-ui/core';
-import DeleteIcon from '@material-ui/icons/Delete';
-import CloseIcon from '@material-ui/icons/Close';
-import FilterListIcon from '@material-ui/icons/FilterList';
+} from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
+import CloseIcon from '@mui/icons-material/Close';
+import FilterListIcon from '@mui/icons-material/FilterList';
 import Image from './Image';
 import { DELETE_PHOTOS as DELETE_PHOTOS_GQL_M } from '../../graphql/mutation';
 import { graphqlQuery } from '../../graphql';
@@ -125,95 +125,93 @@ const Gallery = ({
     },
   ];
 
-  return (
-    <>
-      {ToolBar ? (
-        <ToolBar selectedItems={selected} onCheckAll={handleCheckAll} />
-      ) : (
-        <SelectToolbar
-          numSelected={selected.length}
-          enableCheckAll
-          checked={selected.length > 0}
-          indeterminate={selected.length !== images.length}
-          onCheckAll={handleCheckAll}
-          title="Gallery"
-          selectedButtons={[
-            <Tooltip title="Delete">
-              <IconButton onClick={handleDeleteSelected} aria-label="delete">
-                <DeleteIcon />
-              </IconButton>
-            </Tooltip>,
-          ]}
-          buttons={[
-            <Tooltip title="Filter list">
-              <IconButton aria-label="filter list">
-                <FilterListIcon />
-              </IconButton>
-            </Tooltip>,
-          ]}
-        />
-      )}
-
-      <ContextMenuProvider options={contextMenuOptions}>
-        <Box display="flex" justifyContent="center">
-          <Grid
-            container
-            spacing={2}
-            justifyContent="center"
-            style={{ margin: '16px' }}
-          >
-            {images &&
-              images.map((image, index) => (
-                <Grid key={index} item>
-                  <Image
-                    image={image}
-                    imgHash={imgHash}
-                    height={290}
-                    href={`/facial-recognition?id=${image.id}`}
-                    onCheck={handleCheckImage}
-                    redirect={selected.length === 0}
-                    hover
-                    selected={selected.includes(image.id)}
-                    selectMode={selected.length > 0}
-                  />
-                </Grid>
-              ))}
-          </Grid>
-        </Box>
-        <Snackbar
-          anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'left',
-          }}
-          open={openDeleteSnackbar}
-          autoHideDuration={6000}
-          onClose={handleCloseDeleteSnackbar}
-          message={deleteMsg}
-          action={
-            <>
-              <IconButton
-                size="small"
-                aria-label="close"
-                color="inherit"
-                onClick={handleCloseDeleteSnackbar}
-              >
-                <CloseIcon fontSize="small" />
-              </IconButton>
-            </>
-          }
-        />
-      </ContextMenuProvider>
-      <TablePagination
-        rowsPerPageOptions={[10, 20, 30, 50, 100]}
-        component="div"
-        count={count}
-        rowsPerPage={options.rowsPerPage}
-        page={options.page}
-        onPageChange={handlePageChange}
-        onRowsPerPageChange={handleRowsPerPageChange}
+  return <>
+    {ToolBar ? (
+      <ToolBar selectedItems={selected} onCheckAll={handleCheckAll} />
+    ) : (
+      <SelectToolbar
+        numSelected={selected.length}
+        enableCheckAll
+        checked={selected.length > 0}
+        indeterminate={selected.length !== images.length}
+        onCheckAll={handleCheckAll}
+        title="Gallery"
+        selectedButtons={[
+          <Tooltip title="Delete">
+            <IconButton onClick={handleDeleteSelected} aria-label="delete" size="large">
+              <DeleteIcon />
+            </IconButton>
+          </Tooltip>,
+        ]}
+        buttons={[
+          <Tooltip title="Filter list">
+            <IconButton aria-label="filter list" size="large">
+              <FilterListIcon />
+            </IconButton>
+          </Tooltip>,
+        ]}
       />
-    </>
-  );
+    )}
+
+    <ContextMenuProvider options={contextMenuOptions}>
+      <Box display="flex" justifyContent="center">
+        <Grid
+          container
+          spacing={2}
+          justifyContent="center"
+          style={{ margin: '16px' }}
+        >
+          {images &&
+            images.map((image, index) => (
+              <Grid key={index} item>
+                <Image
+                  image={image}
+                  imgHash={imgHash}
+                  height={290}
+                  href={`/facial-recognition?id=${image.id}`}
+                  onCheck={handleCheckImage}
+                  redirect={selected.length === 0}
+                  hover
+                  selected={selected.includes(image.id)}
+                  selectMode={selected.length > 0}
+                />
+              </Grid>
+            ))}
+        </Grid>
+      </Box>
+      <Snackbar
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'left',
+        }}
+        open={openDeleteSnackbar}
+        autoHideDuration={6000}
+        onClose={handleCloseDeleteSnackbar}
+        message={deleteMsg}
+        action={
+          <>
+            <IconButton
+              size="small"
+              aria-label="close"
+              color="inherit"
+              onClick={handleCloseDeleteSnackbar}
+            >
+              <CloseIcon fontSize="small" />
+            </IconButton>
+          </>
+        }
+      />
+    </ContextMenuProvider>
+    <TablePagination
+      rowsPerPageOptions={[10, 20, 30, 50, 100]}
+      component="div"
+      count={count}
+      rowsPerPage={options.rowsPerPage}
+      page={options.page}
+      onPageChange={handlePageChange}
+      onRowsPerPageChange={handleRowsPerPageChange}
+    />
+  </>;
 };
 
 export default Gallery;

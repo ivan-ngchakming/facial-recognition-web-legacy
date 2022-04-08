@@ -1,23 +1,37 @@
 import React, { useState } from 'react';
+import { styled } from '@mui/material/styles';
 import FaceCard from './FaceCard';
-import { makeStyles } from '@material-ui/core/styles';
-import { Divider, List } from '@material-ui/core';
+import { Divider, List } from '@mui/material';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
+const PREFIX = 'FaceCards';
+
+const classes = {
+  root: `${PREFIX}-root`,
+  faceCard: `${PREFIX}-faceCard`,
+  inline: `${PREFIX}-inline`
+};
+
+const Root = styled('div')((
+  {
+    theme
+  }
+) => ({
+  [`&.${classes.root}`]: {
     height: '95%',
     overflowY: 'auto',
   },
-  faceCard: {
+
+  [`& .${classes.faceCard}`]: {
     alignItems: 'flex-start',
   },
-  inline: {
+
+  [`& .${classes.inline}`]: {
     display: 'inline',
-  },
+  }
 }));
 
 export default function FaceCards({ img, data, onClick }) {
-  const classes = useStyles();
+
   const [selectedIndex, setSelectedIndex] = useState(-1);
 
   const handleClick = (face, matchResults, index) => {
@@ -26,7 +40,7 @@ export default function FaceCards({ img, data, onClick }) {
   };
 
   return (
-    <div className={classes.root}>
+    <Root className={classes.root}>
       <List>
         {data.map((face, index) => (
           <div key={index}>
@@ -43,6 +57,6 @@ export default function FaceCards({ img, data, onClick }) {
           </div>
         ))}
       </List>
-    </div>
+    </Root>
   );
 }

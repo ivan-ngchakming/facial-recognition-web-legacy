@@ -1,7 +1,7 @@
 import { useState, useMemo } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Grid, Tooltip, IconButton, Switch } from '@material-ui/core';
-import DeleteIcon from '@material-ui/icons/Delete';
+import { Grid, Tooltip, IconButton, Switch } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 import DataTable from '../../components/DataTable/DataTable';
 import Image from '../../components/images/Image';
@@ -51,7 +51,7 @@ const Profiles = () => {
 
   const toolBarSelectedButtons = [
     <Tooltip title="Delete">
-      <IconButton aria-label="delete">
+      <IconButton aria-label="delete" size="large">
         <DeleteIcon />
       </IconButton>
     </Tooltip>,

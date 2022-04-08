@@ -1,4 +1,5 @@
 import React from 'react';
+import { styled } from '@mui/material/styles';
 import { useHistory } from 'react-router-dom';
 import {
   Typography,
@@ -7,21 +8,32 @@ import {
   CardActionArea,
   CardActions,
   Button,
-} from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+} from '@mui/material';
 import { Page } from '../../types';
 
-const useStyles = makeStyles((theme) => ({
-  card: {
+const PREFIX = 'PageCard';
+
+const classes = {
+  card: `${PREFIX}-card`,
+  description: `${PREFIX}-description`
+};
+
+const Root = styled('div')((
+  {
+    theme
+  }
+) => ({
+  [`& .${classes.card}`]: {
     minWidth: 275,
   },
-  description: {
+
+  [`& .${classes.description}`]: {
     minHeight: 60,
-  },
+  }
 }));
 
 export default function PageCard({ page }: { page: Page }) {
-  const classes = useStyles();
+
   const history = useHistory();
 
   const handleClick = () => {
@@ -29,7 +41,7 @@ export default function PageCard({ page }: { page: Page }) {
   };
 
   return (
-    <div>
+    <Root>
       <Card className={classes.card}>
         <CardActionArea onClick={handleClick}>
           <CardContent>
@@ -55,6 +67,6 @@ export default function PageCard({ page }: { page: Page }) {
           </Button>
         </CardActions>
       </Card>
-    </div>
+    </Root>
   );
 }

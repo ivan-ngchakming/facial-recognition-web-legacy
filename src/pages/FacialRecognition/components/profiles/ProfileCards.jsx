@@ -1,26 +1,38 @@
-import { Button, List } from '@material-ui/core';
+import { Button, List } from '@mui/material';
+import { styled } from '@mui/material/styles';
 import React, { useState, useEffect } from 'react';
 import ProfileCard from './ProfileCard';
-import { makeStyles } from '@material-ui/core/styles';
 import { graphqlQuery } from '../../../../graphql';
 import { ASSIGN_FACE_TO_PROFILE as ASSIGN_FACE_TO_PROFILE_GQL_M } from '../../../../graphql/mutation';
 import CreatePortfolio from './CreatePortfolio';
 import DetailedProfileCard from './DetailedProfileCard';
 
-const useStyles = makeStyles((theme) => ({
-  btnWrapper: {
+const PREFIX = 'ProfileCards';
+
+const classes = {
+  btnWrapper: `${PREFIX}-btnWrapper`,
+  btn: `${PREFIX}-btn`
+};
+
+const Root = styled('div')((
+  {
+    theme
+  }
+) => ({
+  [`& .${classes.btnWrapper}`]: {
     marginTop: theme.spacing(1),
     display: 'flex',
     justifyContent: 'center',
   },
-  btn: {
+
+  [`& .${classes.btn}`]: {
     minWidth: '120px',
     margin: theme.spacing(0, 1),
-  },
+  }
 }));
 
 export default function ProfileCards({ face, matchResults }) {
-  const classes = useStyles();
+
   const [profile, setProfile] = useState(null);
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const [openCreatePannel, setOpenCreatePannel] = useState(
@@ -57,7 +69,7 @@ export default function ProfileCards({ face, matchResults }) {
   }, [face, profile]);
 
   return (
-    <div>
+    <Root>
       {matchResults &&
         matchResults.length > 0 &&
         !profile &&
@@ -109,6 +121,6 @@ export default function ProfileCards({ face, matchResults }) {
           faceId={parseInt(face.face.id)}
         />
       )}
-    </div>
+    </Root>
   );
 }

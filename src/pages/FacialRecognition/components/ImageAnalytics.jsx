@@ -1,39 +1,59 @@
-import { Button, Grid, Paper, Typography, Zoom } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { Button, Grid, Paper, Typography, Zoom } from '@mui/material';
+import { styled } from '@mui/material/styles';
 import React, { useState } from 'react';
 import ResizeObserver from 'react-resize-observer';
 import FaceCards from './faces/FaceCards';
 import ImageAnnotator from './ImageAnnotator';
 import ProfileCards from './profiles/ProfileCards';
 
-const MIN_GRID_HEIGHT = 400;
+const PREFIX = 'ImageAnalytics';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
+const classes = {
+  root: `${PREFIX}-root`,
+  imgWrapperGrid: `${PREFIX}-imgWrapperGrid`,
+  imageWrapper: `${PREFIX}-imageWrapper`,
+  result: `${PREFIX}-result`,
+  scroll: `${PREFIX}-scroll`,
+  lowerGrid: `${PREFIX}-lowerGrid`
+};
+
+const Root = styled('div')((
+  {
+    theme
+  }
+) => ({
+  [`& .${classes.root}`]: {
     flexGrow: 1,
     justify: 'center',
   },
-  imgWrapperGrid: {
+
+  [`& .${classes.imgWrapperGrid}`]: {
     height: '100%',
   },
-  imageWrapper: {
+
+  [`& .${classes.imageWrapper}`]: {
     padding: theme.spacing(2),
   },
-  result: {
+
+  [`& .${classes.result}`]: {
     padding: theme.spacing(2),
     height: '100%',
   },
-  scroll: {
+
+  [`& .${classes.scroll}`]: {
     overflowY: 'scroll',
   },
-  lowerGrid: {
+
+  [`& .${classes.lowerGrid}`]: {
     display: 'flex',
     justifyContent: 'right',
-  },
+  }
 }));
 
+const MIN_GRID_HEIGHT = 400;
+
 export default function ImageAnalytics({ image, data, callback }) {
-  const classes = useStyles();
+
   const [imgGridHeight, setImgGridHeight] = useState(0);
   const [selectedFace, setSelectedFace] = useState(null);
   const [selectedMatchResults, setSelectedMatchResults] = useState(null);
@@ -54,7 +74,7 @@ export default function ImageAnalytics({ image, data, callback }) {
   };
 
   return (
-    <div>
+    <Root>
       <Grid container spacing={4} className={classes.root}>
         <Zoom in>
           <Grid item xs={12} lg={4} md={12} className={classes.imgWrapperGrid}>
@@ -97,6 +117,6 @@ export default function ImageAnalytics({ image, data, callback }) {
           <Button onClick={resetImage}>Analyse New Image</Button>
         </Grid>
       </Grid>
-    </div>
+    </Root>
   );
 }

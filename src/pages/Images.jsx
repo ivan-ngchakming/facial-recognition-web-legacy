@@ -1,5 +1,5 @@
 import React from 'react';
-import { CircularProgress, Box, Container, Paper } from '@material-ui/core';
+import { CircularProgress, Box, Container, Paper } from '@mui/material';
 import Gallery from '../components/images/Gallery';
 import useImages from '../hooks/useImages';
 

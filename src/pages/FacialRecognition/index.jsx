@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import { Container, CircularProgress, Typography } from '@material-ui/core';
-import { withStyles } from '@material-ui/core/styles';
+import { Box, Container, CircularProgress, Typography } from '@mui/material';
 
 import { graphqlQuery } from '../../graphql';
 import { PHOTO as PHOTO_GQL_M } from '../../graphql/mutation';
@@ -12,18 +11,6 @@ import ImageAnalytics from './components/ImageAnalytics';
 import UploadImage from './components/UploadImage';
 
 const BASE_URL = process.env.REACT_APP_BASE_URL || 'http://localhost:5000';
-
-const styles = (theme) => ({
-  root: {
-    marginTop: '10vh',
-  },
-  div: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    margin: theme.spacing(2, 0, 2, 0),
-  },
-});
 
 class FacialRecognition extends Component {
   constructor(props) {
@@ -123,10 +110,15 @@ class FacialRecognition extends Component {
           )}
 
           {isUploading && (
-            <div className={classes.root}>
-              <div className={classes.div}>
+            <div style={{ marginTop: '10vh' }}>
+              <Box sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                my: 2, 
+              }}>
                 <Typography variant="body1">Creating new Image</Typography>
-              </div>
+              </Box>
               <div className={classes.div}>
                 <CircularProgress />
               </div>
@@ -146,6 +138,4 @@ class FacialRecognition extends Component {
   }
 }
 
-export default withRouter(
-  withStyles(styles, { withTheme: true })(FacialRecognition)
-);
+export default withRouter(FacialRecognition);

@@ -1,27 +1,41 @@
 import React from 'react';
+import { styled } from '@mui/material/styles';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { lighten, makeStyles } from '@material-ui/core/styles';
-import { Checkbox, Toolbar, Typography } from '@material-ui/core';
+import { lighten } from '@mui/material/styles';
+import { Checkbox, Toolbar, Typography } from '@mui/material';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
+const PREFIX = 'SelectToolbar';
+
+const classes = {
+  root: `${PREFIX}-root`,
+  highlight: `${PREFIX}-highlight`,
+  title: `${PREFIX}-title`
+};
+
+const StyledToolbar = styled(Toolbar)((
+  {
+    theme
+  }
+) => ({
+  [`&.${classes.root}`]: {
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(1),
   },
-  highlight:
-    theme.palette.type === 'light'
-      ? {
-          color: theme.palette.secondary.main,
-          backgroundColor: lighten(theme.palette.secondary.light, 0.85),
-        }
-      : {
-          color: theme.palette.text.primary,
-          backgroundColor: theme.palette.secondary.dark,
-        },
-  title: {
+
+  [`&.${classes.highlight}`]: theme.palette.mode === 'light'
+    ? {
+        color: theme.palette.secondary.main,
+        backgroundColor: lighten(theme.palette.secondary.light, 0.85),
+      }
+    : {
+        color: theme.palette.text.primary,
+        backgroundColor: theme.palette.secondary.dark,
+      },
+
+  [`& .${classes.title}`]: {
     flex: '1 1 100%',
-  },
+  }
 }));
 
 const SelectToolbar = ({
@@ -34,10 +48,10 @@ const SelectToolbar = ({
   buttons,
   selectedButtons,
 }) => {
-  const classes = useStyles();
+
 
   return (
-    <Toolbar
+    <StyledToolbar
       className={clsx(classes.root, {
         [classes.highlight]: numSelected > 0,
       })}
@@ -74,7 +88,7 @@ const SelectToolbar = ({
       )}
 
       {numSelected > 0 ? selectedButtons : buttons}
-    </Toolbar>
+    </StyledToolbar>
   );
 };
 

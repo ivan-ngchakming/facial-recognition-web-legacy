@@ -1,23 +1,35 @@
-import { Button, makeStyles, Typography } from '@material-ui/core';
-import React from 'react';
+import { Button, Typography } from '@mui/material';
+import { styled } from '@mui/material/styles';
 import { useHistory } from 'react-router-dom';
 import CroppedImage from '../../../../components/images/CroppedImage';
 
-const useStyle = makeStyles((theme) => ({
-  imgWrapper: {
+const PREFIX = 'DetailedProfileCard';
+
+const classes = {
+  imgWrapper: `${PREFIX}-imgWrapper`,
+  btnWrapper: `${PREFIX}-btnWrapper`
+};
+
+const Root = styled('div')((
+  {
+    theme
+  }
+) => ({
+  [`& .${classes.imgWrapper}`]: {
     display: 'flex',
     justifyContent: 'center',
     margin: theme.spacing(10),
   },
-  btnWrapper: {
+
+  [`& .${classes.btnWrapper}`]: {
     marginTop: theme.spacing(1),
     display: 'flex',
     justifyContent: 'center',
-  },
+  }
 }));
 
+
 export default function DetailedProfileCard({ profile }) {
-  const classes = useStyle();
   const history = useHistory();
 
   const handleViewProfile = () => {
@@ -25,7 +37,7 @@ export default function DetailedProfileCard({ profile }) {
   };
 
   return (
-    <div>
+    <Root>
       <Typography variant="h6" align="center">
         {profile.name}
       </Typography>
@@ -57,6 +69,6 @@ export default function DetailedProfileCard({ profile }) {
       <Typography variant="body2" align="right">
         Profile ID: {profile.id}
       </Typography>
-    </div>
+    </Root>
   );
 }
