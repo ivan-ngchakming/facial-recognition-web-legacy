@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import Home from './pages/Home';
 import NavBar from './components/nav/NavBar';
 import FacialRecognition from './pages/FacialRecognition';

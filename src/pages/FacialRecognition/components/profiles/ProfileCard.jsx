@@ -13,6 +13,8 @@ import { roundOff } from '../../../../utils';
 import CroppedImage from '../../../../components/images/CroppedImage';
 import LinearBarsProgress from '../../../../components/progress/LinearBarsProgress';
 
+const BASE_URL = process.env.REACT_APP_BASE_URL || 'http://localhost:5000';
+
 const useStyles = makeStyles((theme) => ({
   faceCard: {
     alignItems: 'flex-start',
@@ -68,7 +70,7 @@ export default function ProfileCard({
             <ListItemAvatar>
               {profile.thumbnail ? (
                 <CroppedImage
-                  img={`/api/image/${profile.thumbnail.photo.id}`}
+                  img={`${BASE_URL}/api/image/${profile.thumbnail.photo.id}`}
                   faceLocation={[
                     ...profile.thumbnail.location,
                     profile.thumbnail.photo.width,
