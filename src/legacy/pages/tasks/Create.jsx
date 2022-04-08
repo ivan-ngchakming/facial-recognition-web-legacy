@@ -9,7 +9,7 @@ import {
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { graphqlQuery } from '../../graphql';
-import { BATCH_FACE_REC } from '../../graphql';
+import { BATCH_FACE_REC } from '../../graphql/mutation';
 
 export default function Create() {
   const navigate = useNavigate();
