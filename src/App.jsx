@@ -13,6 +13,7 @@ import ProfileDetails from './legacy/pages/ProfileDetails';
 import Create from './legacy/pages/tasks/Create';
 
 import Login from './pages/Login';
+import Register from './pages/Register';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Routes>
           <Route path="/" exact element={<Home/ >} />
           <Route path="/login" exact element={<Login />} />
+          <Route path="/register" exact element={<Register />} />
           <Route
             path="/facial-recognition"
             exact
