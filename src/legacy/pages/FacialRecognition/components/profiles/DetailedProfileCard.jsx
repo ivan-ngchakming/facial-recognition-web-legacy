@@ -1,6 +1,6 @@
 import { Button, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import CroppedImage from '../../../../components/images/CroppedImage';
 
 const PREFIX = 'DetailedProfileCard';
@@ -30,10 +30,10 @@ const Root = styled('div')((
 
 
 export default function DetailedProfileCard({ profile }) {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleViewProfile = () => {
-    history.push(`/profile?id=${profile.id}`);
+    navigate(`/profile?id=${profile.id}`);
   };
 
   return (

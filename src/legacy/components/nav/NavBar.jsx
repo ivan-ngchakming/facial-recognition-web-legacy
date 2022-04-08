@@ -9,7 +9,7 @@ import {
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
 import { SITEMAP } from '../../constants';
 import clsx from 'clsx';
@@ -110,7 +110,7 @@ const drawerWidth = 240;
 export default function NavBar({ children }) {
 
   const [open, setOpen] = React.useState(false);
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -122,7 +122,7 @@ export default function NavBar({ children }) {
 
   const handleNavClick = (page) => {
     handleDrawerClose();
-    history.push(page.url);
+    navigate(page.url);
   };
 
   return (

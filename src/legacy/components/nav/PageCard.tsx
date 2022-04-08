@@ -1,6 +1,6 @@
 import React from 'react';
 import { styled } from '@mui/material/styles';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import {
   Typography,
   Card,
@@ -34,10 +34,10 @@ const Root = styled('div')((
 
 export default function PageCard({ page }: { page: Page }) {
 
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleClick = () => {
-    history.push(page.url);
+    navigate(page.url);
   };
 
   return (

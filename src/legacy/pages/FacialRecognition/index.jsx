@@ -1,16 +1,35 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
 import { Box, Container, CircularProgress, Typography } from '@mui/material';
+import { useSearchParams  } from 'react-router-dom';
 
 import { graphqlQuery } from '../../graphql';
 import { PHOTO as PHOTO_GQL_M } from '../../graphql/mutation';
 import { PHOTO as PHOTO_GQL_Q } from '../../graphql/query';
 import { getFaceLocations } from '../../utils';
-
 import ImageAnalytics from './components/ImageAnalytics';
 import UploadImage from './components/UploadImage';
 
 const BASE_URL = process.env.REACT_APP_BASE_URL || 'http://localhost:5000';
+
+
+export const withRouter = (Component) => {
+  const Wrapper = (props) => {
+    const [searchParams] = useSearchParams();
+    
+    const location = {
+      search: searchParams,
+    }
+
+    return (
+      <Component
+      location={location}
+        {...props}
+        />
+    );
+  };
+  
+  return Wrapper;
+};
 
 class FacialRecognition extends Component {
   constructor(props) {
@@ -97,7 +116,6 @@ class FacialRecognition extends Component {
   };
 
   render() {
-    const { classes } = this.props;
     const { imgId, isUploading, faces } = this.state;
 
     return (
@@ -119,9 +137,9 @@ class FacialRecognition extends Component {
               }}>
                 <Typography variant="body1">Creating new Image</Typography>
               </Box>
-              <div className={classes.div}>
+              <Box sx={{ textAlign: 'center' }}>
                 <CircularProgress />
-              </div>
+              </Box>
             </div>
           )}
 

@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Grid, Tooltip, IconButton, Switch } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 
@@ -36,7 +36,7 @@ const headCells = [
 ];
 
 const Profiles = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const [profiles, refetchProfiles, profilesCount] = useProfiles(1, 10);
   const [isGalleryView, setIsGalleryView] = useState(false);
   const [, setSelected] = useState([]);
@@ -88,7 +88,7 @@ const Profiles = () => {
   };
 
   const handleDoubleClick = (row) => {
-    history.push(`/profile?id=${row.id}`);
+    navigate(`/profile?id=${row.id}`);
   };
 
   return (

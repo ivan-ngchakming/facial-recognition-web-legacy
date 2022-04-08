@@ -7,12 +7,12 @@ import {
   Button,
   Grid,
 } from '@mui/material';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { graphqlQuery } from '../../graphql';
 import { BATCH_FACE_REC } from '../../graphql';
 
 export default function Create() {
-  const history = useHistory();
+  const navigate = useNavigate();
   const [values, setValues] = useState({
     dir: null,
   });
@@ -30,7 +30,7 @@ export default function Create() {
 
   const submit = () => {
     createTask(values.dir);
-    history.push('/tasks');
+    navigate('/tasks');
   };
 
   return (

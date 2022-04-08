@@ -1,6 +1,6 @@
-import { HashRouter as Router, Route, Switch } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import CssBaseline from '@mui/material/CssBaseline';
-import { ThemeProvider, StyledEngineProvider } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
 import { theme } from './theme';
 
 import NavBar from './legacy/components/nav/NavBar';
@@ -16,33 +16,27 @@ import Login from './pages/Login';
 
 function App() {
   return (
-    <StyledEngineProvider injectFirst>
-      <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <div className="App">
-        <header className="App-header">
-          <Router>
-            <NavBar>
-              <Switch>
-                <Route path="/" exact component={Home} />
-                <Route path="/login" exact component={Login} />
-                <Route
-                  path="/facial-recognition"
-                  exact
-                  component={FacialRecognition}
-                />
-                <Route path="/images" exact component={Images} />
-                <Route path="/profiles" exact component={Profiles} />
-                <Route path="/profile" exact component={ProfileDetails} />
-                <Route path="/tasks" exact component={BatchRecTasks} />
-                <Route path="/tasks/create" exact component={Create} />
-              </Switch>
-            </NavBar>
-          </Router>
-        </header>
-      </div>
-      </ThemeProvider>
-    </StyledEngineProvider>
+    <ThemeProvider theme={theme}>
+    <CssBaseline />
+    <Router>
+      <NavBar>
+        <Routes>
+          <Route path="/" exact element={<Home/ >} />
+          <Route path="/login" exact element={<Login />} />
+          <Route
+            path="/facial-recognition"
+            exact
+            element={<FacialRecognition />}
+          />
+          <Route path="/images" exact element={<Images />} />
+          <Route path="/profiles" exact element={<Profiles />} />
+          <Route path="/profile" exact element={<ProfileDetails />} />
+          <Route path="/tasks" exact element={<BatchRecTasks />} />
+          <Route path="/tasks/create" exact element={<Create />} />
+        </Routes>
+      </NavBar>
+    </Router>
+    </ThemeProvider>
   );
 }
 

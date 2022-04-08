@@ -1,4 +1,4 @@
-import React, {
+import {
   useState,
   useEffect,
   useRef,
@@ -7,7 +7,7 @@ import React, {
 } from 'react';
 import { styled } from '@mui/material/styles';
 import { Avatar, Card, CardActionArea, Checkbox } from '@mui/material';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { getCornerBrightness } from '../../utils';
 import clsx from 'clsx';
 import { ContextMenuContext } from '../context/MenuContext';
@@ -74,7 +74,7 @@ export default function Image({
   imgHash,
 }) {
 
-  const history = useHistory();
+  const navigate = useNavigate();
   const canvasRef = useRef(null);
   const [imageOpacity, setImageOpacity] = useState(1);
   const [optionsOpacity, setOptionsOpacity] = useState(0);
@@ -96,7 +96,7 @@ export default function Image({
 
   const handleClick = (event) => {
     if (redirect && event.target.type !== 'checkbox') {
-      history.push(href);
+      navigate(href);
     }
     if (selectMode) {
       onCheck(image.id);
