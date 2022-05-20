@@ -61,7 +61,7 @@ const ProfileDetails = () => {
                   <CroppedImage
                     imgWidth={250}
                     style={{ margin: 16 }}
-                    img={`${BASE_URL}/${profile.thumbnail.photo.url}`}
+                    img={`${BASE_URL}${profile.thumbnail.photo.url}`}
                     faceLocation={[
                       ...profile.thumbnail.location,
                       profile.thumbnail.photo.width,

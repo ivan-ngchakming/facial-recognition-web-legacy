@@ -19,7 +19,7 @@ const headCells = [
     render: (value) => {
       const image = value
         ? {
-            source: `${BASE_URL}/${value.photo.url}`,
+            source: `${BASE_URL}${value.photo.url}`,
           }
         : null;
       return (
@@ -77,7 +77,7 @@ const Profiles = () => {
   const getImages = (profiles) => {
     return profiles.map((profile) => ({
       source: profile.thumbnail
-        ? `${BASE_URL}/${profile.thumbnail.photo.url}`
+        ? `${BASE_URL}${profile.thumbnail.photo.url}`
         : null,
       id: profile.id,
     }));

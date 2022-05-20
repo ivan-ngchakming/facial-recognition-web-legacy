@@ -87,7 +87,7 @@ export default function ProfileCard({
             <ListItemAvatar>
               {profile.thumbnail ? (
                 <CroppedImage
-                  img={`${BASE_URL}/${profile.thumbnail.photo.url}`}
+                  img={`${BASE_URL}${profile.thumbnail.photo.url}`}
                   faceLocation={[
                     ...profile.thumbnail.location,
                     profile.thumbnail.photo.width,

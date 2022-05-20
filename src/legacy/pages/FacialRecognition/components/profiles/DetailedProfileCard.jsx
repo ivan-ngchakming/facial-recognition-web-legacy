@@ -47,7 +47,7 @@ export default function DetailedProfileCard({ profile }) {
       {profile.thumbnail && profile.thumbnail.photo && (
         <div className={classes.imgWrapper}>
           <CroppedImage
-            img={`${BASE_URL}/${profile.thumbnail.photo.url}`}
+            img={`${BASE_URL}${profile.thumbnail.photo.url}`}
             faceLocation={[
               ...profile.thumbnail.location,
               profile.thumbnail.photo.width,

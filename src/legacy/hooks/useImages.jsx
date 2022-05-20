@@ -29,7 +29,7 @@ export default function useImages(
         setImages(
           data.photos.map((photo) => ({
             id: photo.id,
-            source: `${BASE_URL}/${photo.url}`,
+            source: `${BASE_URL}${photo.url}`,
           }))
         );
         setImgCount(data.count);

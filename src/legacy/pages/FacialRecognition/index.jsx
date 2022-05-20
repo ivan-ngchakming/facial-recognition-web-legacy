@@ -147,7 +147,7 @@ class FacialRecognition extends Component {
 
           {faces && !isUploading && (
             <ImageAnalytics
-              image={`${BASE_URL}/${this.state.photo.url}`}
+              image={`${BASE_URL}${this.state.photo.url}`}
               data={faces}
               callback={this.imageAnalyticsCallBack}
             />
