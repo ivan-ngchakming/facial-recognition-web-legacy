@@ -38,6 +38,7 @@ class FacialRecognition extends Component {
       faces: null,
       imgId: null,
       isUploading: false,
+      photo: null,
     };
   }
 
@@ -100,6 +101,7 @@ class FacialRecognition extends Component {
       graphqlQuery(PHOTO_GQL_Q, { photoId: id }).then((res) => {
         const faceLocations = getFaceLocations(res.photo);
         this.updateFaceState(res.photo.faces, faceLocations);
+        this.setState({ photo: res.photo })
         this.setState({
           isUploading: false,
         });
@@ -145,7 +147,7 @@ class FacialRecognition extends Component {
 
           {faces && !isUploading && (
             <ImageAnalytics
-              image={`${BASE_URL}/api/image/${imgId}`}
+              image={`${BASE_URL}/${this.state.photo.url}`}
               data={faces}
               callback={this.imageAnalyticsCallBack}
             />

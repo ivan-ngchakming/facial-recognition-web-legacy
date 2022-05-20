@@ -9,6 +9,8 @@ import Gallery from '../../components/images/Gallery';
 import useProfiles from '../../hooks/useProfiles';
 import SelectToolbar from '../../components/SelectToolbar';
 
+const BASE_URL = process.env.REACT_APP_BASE_URL;
+
 const headCells = [
   {
     id: 'thumbnail',
@@ -17,7 +19,7 @@ const headCells = [
     render: (value) => {
       const image = value
         ? {
-            source: `/api/image/${value.photo.id}`,
+            source: `${BASE_URL}/${value.photo.url}`,
           }
         : null;
       return (
@@ -75,7 +77,7 @@ const Profiles = () => {
   const getImages = (profiles) => {
     return profiles.map((profile) => ({
       source: profile.thumbnail
-        ? `/api/image/${profile.thumbnail.photo.id}`
+        ? `${BASE_URL}/${profile.thumbnail.photo.url}`
         : null,
       id: profile.id,
     }));

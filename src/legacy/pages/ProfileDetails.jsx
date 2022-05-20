@@ -7,6 +7,8 @@ import useImages from '../hooks/useImages';
 import CroppedImage from '../components/images/CroppedImage';
 import Gallery from '../components/images/Gallery';
 
+const BASE_URL = process.env.REACT_APP_BASE_URL;
+
 const ProfileDetails = () => {
   const location = useLocation();
 
@@ -59,7 +61,7 @@ const ProfileDetails = () => {
                   <CroppedImage
                     imgWidth={250}
                     style={{ margin: 16 }}
-                    img={`/api/image/${profile.thumbnail.photo.id}`}
+                    img={`${BASE_URL}/${profile.thumbnail.photo.url}`}
                     faceLocation={[
                       ...profile.thumbnail.location,
                       profile.thumbnail.photo.width,

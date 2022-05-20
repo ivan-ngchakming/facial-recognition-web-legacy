@@ -4,6 +4,7 @@ export const PHOTO = `
       id
       width
       height
+      url
       faces {
         id
         location
@@ -17,6 +18,7 @@ export const PHOTO = `
               id
               width
               height
+              url
             }
           }
         }
@@ -32,6 +34,7 @@ export const PHOTOS = `
       count
       photos {
         id
+        url
       }
     }
   }
@@ -58,6 +61,7 @@ export const PROFILE = `
           id
           width
           height
+          url
         }
       }
     }
@@ -77,6 +81,7 @@ export const PROFILES = `
           id
           photo {
             id
+            url
           }
         }
       }

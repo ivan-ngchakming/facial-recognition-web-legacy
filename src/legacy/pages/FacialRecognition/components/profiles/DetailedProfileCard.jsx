@@ -3,6 +3,8 @@ import { styled } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
 import CroppedImage from '../../../../components/images/CroppedImage';
 
+const BASE_URL = process.env.REACT_APP_BASE_URL;
+
 const PREFIX = 'DetailedProfileCard';
 
 const classes = {
@@ -45,7 +47,7 @@ export default function DetailedProfileCard({ profile }) {
       {profile.thumbnail && profile.thumbnail.photo && (
         <div className={classes.imgWrapper}>
           <CroppedImage
-            img={`/api/image/${profile.thumbnail.photo.id}`}
+            img={`${BASE_URL}/${profile.thumbnail.photo.url}`}
             faceLocation={[
               ...profile.thumbnail.location,
               profile.thumbnail.photo.width,
