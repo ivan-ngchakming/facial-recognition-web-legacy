@@ -118,7 +118,7 @@ class FacialRecognition extends Component {
   };
 
   render() {
-    const { imgId, isUploading, faces } = this.state;
+    const { isUploading, faces } = this.state;
 
     return (
       <React.Fragment>
