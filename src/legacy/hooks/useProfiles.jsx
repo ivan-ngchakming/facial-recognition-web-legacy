@@ -15,7 +15,6 @@ export default function useProfiles(defaultPage, defaultPerPage) {
   }, []);
 
   const fetch = useCallback(() => {
-    console.log('Fetching profiles', options);
     graphqlQuery(PROFILES_GQL_Q, options)
       .then((res) => {
         const data = res.profiles;

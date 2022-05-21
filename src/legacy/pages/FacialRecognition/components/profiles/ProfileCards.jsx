@@ -40,7 +40,6 @@ export default function ProfileCards({ face, matchResults }) {
   );
 
   const handleClick = (index) => {
-    console.debug(`Clicked profile card ${index}`);
     setSelectedIndex(index);
   };
 

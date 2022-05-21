@@ -50,7 +50,6 @@ export default function CreatePortfolio({ callback, faceId }) {
         }}
         validationSchema={Yup.object().shape({})}
         onSubmit={({ name }, { setStatus, resetForm }) => {
-          console.debug('Submitted form', name);
           graphqlQuery(PROFILE_GQL_M, {
             name: name,
             faceIds: [faceId],

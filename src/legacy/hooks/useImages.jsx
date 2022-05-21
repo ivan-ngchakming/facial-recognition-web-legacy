@@ -22,7 +22,6 @@ export default function useImages(
   }, []);
 
   const fetch = useCallback(() => {
-    console.log('Fetching photos', options);
     graphqlQuery(PHOTOS_GQL_Q, options)
       .then((res) => {
         const data = res.photos;

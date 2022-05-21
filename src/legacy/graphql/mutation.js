@@ -2,6 +2,7 @@ export const PHOTO = `
   mutation photo($rbytes: String) {
     photo(rbytes: $rbytes) {
       id
+      url
       width
       height
       faces {

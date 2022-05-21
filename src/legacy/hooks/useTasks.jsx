@@ -8,7 +8,6 @@ export default function useTasks() {
   const fetch = useCallback(() => {
     graphqlQuery(TASKS_GQL_Q)
       .then((res) => {
-        console.log(res.tasks);
         setTasks(res.tasks);
       })
       .catch((error) => {

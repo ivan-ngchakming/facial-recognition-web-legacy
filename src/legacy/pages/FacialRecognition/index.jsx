@@ -74,21 +74,19 @@ class FacialRecognition extends Component {
   };
 
   uploadImage = (file) => {
-    console.debug('Uploading image file');
     this.setState({ isUploading: true }, () => {
       const reader = new FileReader();
       reader.onload = () => {
-        console.debug('Reader loaded', reader);
         var binaryStr = reader.result;
         binaryStr = binaryStr.replace('data:image/jpeg;base64,', '');
 
         graphqlQuery(PHOTO_GQL_M, { rbytes: binaryStr }).then((res) => {
-          console.debug(res);
           const faceLocations = getFaceLocations(res.photo);
           this.updateFaceState(res.photo.faces, faceLocations);
           this.setState({
             isUploading: false,
             imgId: res.photo.id,
+            photo: res.photo,
           });
         });
       };
@@ -145,7 +143,7 @@ class FacialRecognition extends Component {
             </div>
           )}
 
-          {faces && !isUploading && (
+          {faces && this.state.photo && !isUploading && (
             <ImageAnalytics
               image={`${BASE_URL}${this.state.photo.url}`}
               data={faces}
