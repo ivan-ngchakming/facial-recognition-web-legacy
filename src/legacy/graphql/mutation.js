@@ -83,6 +83,7 @@ export const PROFILE = `
         location
         photo {
           id
+          url
           width
           height
         }

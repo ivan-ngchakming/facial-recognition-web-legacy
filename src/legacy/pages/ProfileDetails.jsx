@@ -14,7 +14,7 @@ const ProfileDetails = () => {
 
   const profileId = useMemo(() => {
     const params = new URLSearchParams(location.search);
-    return Number(params.get('id'));
+    return params.get('id');
   }, [location]);
 
   const [profile, setProfile] = useState(null);
@@ -33,7 +33,7 @@ const ProfileDetails = () => {
   const handleRefetchImgs = useCallback(
     (page, photosPerPage) => {
       const params = new URLSearchParams(location.search);
-      const profileId = Number(params.get('id'));
+      const profileId = params.get('id');
       refetchImgs(page, photosPerPage, profileId);
     },
     [location.search, refetchImgs]
