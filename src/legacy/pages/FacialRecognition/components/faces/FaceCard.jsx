@@ -82,7 +82,7 @@ export default function FaceCard({ index, img, face, selected, onClick }) {
         fetchProfile(face.face.profile.id, 'saved');
       } else {
         setStatus('matching');
-        identifyFace(parseInt(face.face.id));
+        identifyFace(face.face.id);
       }
     }
   }, [status, face.face]);

@@ -46,8 +46,8 @@ export default function ProfileCards({ face, matchResults }) {
 
   const handleSaveFaceToProfile = () => {
     graphqlQuery(ASSIGN_FACE_TO_PROFILE_GQL_M, {
-      faceId: parseInt(face.face.id),
-      profileId: parseInt(matchResults[selectedIndex].id),
+      faceId: face.face.id,
+      profileId: matchResults[selectedIndex].id,
     })
       .then((res) => {
         setProfile(res.assignFaceToProfile.profile);
@@ -118,7 +118,7 @@ export default function ProfileCards({ face, matchResults }) {
       {openCreatePannel && (
         <CreatePortfolio
           callback={handleCreatedProfile}
-          faceId={parseInt(face.face.id)}
+          faceId={face.face.id}
         />
       )}
     </Root>

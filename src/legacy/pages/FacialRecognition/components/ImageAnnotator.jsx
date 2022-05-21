@@ -92,7 +92,7 @@ export default function ImageAnnotator({ src, faceLocations }) {
           onResize={(rect) => this.handleImageLoaded(rect)}
         /> */}
         <img
-          src={`${src}?${Date.now()}`}
+          src={src}
           ref={ref}
           alt=""
           className={[classes.image, classes.box].join(' ')}

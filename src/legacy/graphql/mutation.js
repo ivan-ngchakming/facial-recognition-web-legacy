@@ -29,13 +29,13 @@ export const PHOTO = `
 `;
 
 export const DELETE_PHOTOS = `
-  mutation deletePhotos ($ids: [ID]) {
+  mutation deletePhotos ($ids: [String]) {
     deletePhoto(ids: $ids)
   }
 `;
 
 export const IDENTIFYFACE = `
-  mutation identifyFace($faceId: Int!){
+  mutation identifyFace($faceId: String!){
     identifyFace(faceId: $faceId) {
       id
       status
@@ -50,7 +50,7 @@ export const IDENTIFYFACE = `
 `;
 
 export const ASSIGN_FACE_TO_PROFILE = `
-  mutation assignFaceToProfile($faceId: Int!, $profileId: Int!) {
+  mutation assignFaceToProfile($faceId: String!, $profileId: String!) {
     assignFaceToProfile(faceId: $faceId, profileId: $profileId) {
       id
       profile {
@@ -72,7 +72,7 @@ export const ASSIGN_FACE_TO_PROFILE = `
 `;
 
 export const PROFILE = `
-  mutation profile($id: ID, $name: String, $faceIds: [Int], $thumbnailId: Int) {
+  mutation profile($id: String, $name: String, $faceIds: [String], $thumbnailId: String) {
     profile(_id: $id, name: $name, faceIds: $faceIds, thumbnailId: $thumbnailId) {
       id
       name
